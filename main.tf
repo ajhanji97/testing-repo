@@ -1,6 +1,6 @@
 terraform {
     backend "gcs" { 
-      bucket  = "terraform-state-jb-cicdproject"
+      bucket  = "tf-state-githubactions"
       prefix  = "prod"
     }
 }
@@ -9,6 +9,7 @@ provider "google" {
   project = var.project
   region = var.region
 }
+#Test bucket creation
 resource "google_storage_bucket" "raw" {
   project = var.project
   name = "${var.data-project}-raw"
