@@ -98,7 +98,10 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -out=${{ github.workspace }}/tfplanoutput/saved_plan.txt
+      run: |
+        echo 'plan<<EOF' >> $GITHUB_OUTPUT
+        terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
+        echo 'EOF' >> $GITHUB_OUTPUT
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -108,12 +111,12 @@ jobs:
       if: steps.plan.outcome == 'failure'
       run: exit 1
     
-    - name: Upload Artifact
+    - name: Save Artifact
+      id: save-artifact
       uses: actions/upload-artifact@v3
       with:
-        name: artifact
-        path: ${{ github.workspace }}/tfplanoutput/
-        if-no-files-found: error
+        name: tf-plan
+        path: /tfplan
 
     # - name: Post Plan to GitHub PR
     #     uses: mshick/add-pr-comment@v1
