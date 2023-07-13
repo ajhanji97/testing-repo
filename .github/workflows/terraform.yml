@@ -88,6 +88,9 @@ jobs:
         project="${{ vars.GCP_PROJECT }}" 
         data-project="${{ vars.GCP_DATA_PROJECT }}"
         EOF
+    - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
 
     # Checks that all Terraform configuration files adhere to a canonical format
 #     - name: Terraform Format
