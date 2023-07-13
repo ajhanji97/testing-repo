@@ -10,6 +10,7 @@ provider "google" {
   region = var.region
 }
 #Test bucket creation
+#Test
 resource "google_storage_bucket" "raw" {
   project = var.project
   name = "${var.data-project}-raw"
