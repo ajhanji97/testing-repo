@@ -98,7 +98,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -out=${{ github.workspace }}/tfplanoutput/saved_plan.txt
+      run: terraform plan -out=saved_plan.txt
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -107,25 +107,14 @@ jobs:
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1
-    
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+  
+    - name: Post Plan to GitHub PR
       with:
-        name: artifact
-        path: ${{ github.workspace }}/tfplanoutput/
-        if-no-files-found: error
-
-    # - name: Post Plan to GitHub PR
-    #     uses: mshick/add-pr-comment@v1
-    #     with:
-    #       allow-repeats: true
-    #       repo-token: ${{ secrets.GITHUB_TOKEN }}
-    #       repo-token-user-login: 'github-actions[bot]'
-    #       message: |
-    #         ## plan
-    #         ```
-    #         ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
-    #         ```
+        message: |
+          ## plan
+          ```
+          ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
+          ```
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
