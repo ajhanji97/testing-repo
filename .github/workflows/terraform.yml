@@ -100,7 +100,7 @@ jobs:
     - name: Terraform Plan
       run: |
         echo 'plan<<EOF' >> $GITHUB_OUTPUT
-        terraform plan -no-color -out=tfplan >> $GITHUB_OUTPUT
+        terraform plan -no-color -out=tfplan.txt >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
@@ -116,7 +116,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tf-plan
-        path: /tfplan
+        path: tfplan
 
     # - name: Post Plan to GitHub PR
     #     uses: mshick/add-pr-comment@v1
