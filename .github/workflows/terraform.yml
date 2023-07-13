@@ -110,11 +110,11 @@ jobs:
   
     - name: Post Plan to GitHub PR
       with:
-        message: |
-          ## plan
-          ```
-          ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
-          ```
+        run: |
+          echo 'plan'
+          echo ```
+          echo ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
+          echo ```
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
