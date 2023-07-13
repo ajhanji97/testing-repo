@@ -109,12 +109,11 @@ jobs:
       run: exit 1
   
     - name: Post Plan to GitHub PR
-      with:
-        run: |
-          echo 'plan'
-          echo ```
-          echo ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
-          echo ```
+      run: |
+        echo 'plan'
+        echo ```
+        echo ${{ steps.plan.outputs.stdout || steps.plan.outputs.stderr }}
+        echo ```
 
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
