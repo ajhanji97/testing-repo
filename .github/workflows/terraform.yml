@@ -98,9 +98,22 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -out saved_plan.txt
+      run: terraform plan -out=${{ github.workspace }}/tfplanoutput/saved_plan.txt
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    
+      
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: artifact
+        path: ${{ github.workspace }}/tfplanoutput/
+        if-no-files-found: error
 
     # - name: Post Plan to GitHub PR
     #     uses: mshick/add-pr-comment@v1
