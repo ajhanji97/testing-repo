@@ -108,7 +108,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: tf_plan
-        path: ./examples/tf_plan
         if-no-files-found: error
         retention-days: 1
 
@@ -144,7 +143,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: tf_plan
-        path: ./examples
+      
 
     # Provision resources via Terraform        
     - name: Terraform Apply
