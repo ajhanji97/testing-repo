@@ -133,6 +133,15 @@ jobs:
     
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+    
+    - name: Setup terraform variables
+      id: vars
+      run: |-
+        cat > pipeline.auto.tfvars <<EOF
+        region="${{ vars.GCP_REGION }}" 
+        project="${{ vars.GCP_PROJECT }}" 
+        data-project="${{ vars.GCP_DATA_PROJECT }}"
+        EOF
 
     - name: Download TF Plan
       uses: actions/download-artifact@v2
