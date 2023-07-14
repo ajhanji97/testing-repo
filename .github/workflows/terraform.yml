@@ -105,7 +105,7 @@ jobs:
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
     - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir downloads
+      run: mkdir downloads
     - name: Upload TF Plan
       uses: actions/upload-artifact@v2
       with:
