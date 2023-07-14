@@ -53,10 +53,11 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  terraform_plan:
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    environment: production
+    if: github.event_name == 'push' || github.event_name != 'pull_request'
+   
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -99,24 +100,61 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        echo 'plan<<EOF' >> $GITHUB_OUTPUT
-        terraform plan -no-color -out=tfplan.txt >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
+        chmod +x "${GITHUB_WORKSPACE}/.github/workflows/tf_init.sh"
+        "${GITHUB_WORKSPACE}/.github/workflows/tf_init.sh"
+        chmod +x "${GITHUB_WORKSPACE}/.github/workflows/tf_fmt.sh"
+        "${GITHUB_WORKSPACE}/.github/workflows/tf_fmt.sh"
+        chmod +x "${GITHUB_WORKSPACE}/.github/workflows/tf_plan_check.sh"
+        "${GITHUB_WORKSPACE}/.github/workflows/tf_plan_check.sh"
+        
+        terraform plan -out "tf_plan" -input=false
+        
+      env: 
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Upload TF Plan
+      uses: actions/upload-artifact@v2
+      with:
+        name: tf_plan
+        path: ./examples/tf_plan
+        if-no-files-found: error
+        retention-days: 1
+
+  terraform_apply:
+    name: 'Terraform Apply'
+    runs-on: ubuntu-latest
+    needs: terraform_plan
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@master
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Download TF Plan
+      uses: actions/download-artifact@v2
+      with:
+        name: tf_plan
+        path: ./examples
+
+    # Provision resources via Terraform        
+    - name: Terraform Apply
+      run: |
+        chmod +x "${GITHUB_WORKSPACE}/.github/workflows/tf_init.sh"
+        "${GITHUB_WORKSPACE}/.github/workflows/tf_init.sh"
+        terraform show "tf_plan"
+        terraform apply "tf_plan"
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
     
       
-    - name: Terraform Plan Status
-      if: steps.plan.outcome == 'failure'
-      run: exit 1
     
-    - name: Save Artifact
-      id: save-artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: tf-plan
-        path: tfplan
+
+   
 
     # - name: Post Plan to GitHub PR
     #     uses: mshick/add-pr-comment@v1
