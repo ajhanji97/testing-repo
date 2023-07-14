@@ -100,17 +100,20 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        terraform plan -out "tf_plan" -input=false
+        terraform plan -out "tf_plan.txt" -input=false
         
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    - name: Step 1 - Create a temporary artifact downloads folder
+        run: mkdir downloads
     - name: Upload TF Plan
       uses: actions/upload-artifact@v2
       with:
         name: tf_plan
-        path: tf_plan
+        path: downloads/tf_plan.txt
         if-no-files-found: error
         retention-days: 1
+
 
   terraform_apply:
     name: 'Terraform Apply'
@@ -143,15 +146,15 @@ jobs:
     - name: Download TF Plan
       uses: actions/download-artifact@v2
       with:
-        name: tf_plan
-        path: tf_plan
+        name: tf_plan.txt
+        path: downloads/tf_plan.txt
       
 
     # Provision resources via Terraform        
     - name: Terraform Apply
       run: |
-        terraform show "tf_plan"
-        terraform apply "tf_plan"
+        terraform show "tf_plan.txt"
+        terraform apply "tf_plan.txt"
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
