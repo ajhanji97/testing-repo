@@ -56,6 +56,7 @@ jobs:
   terraform_plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
+    #working-directory: downloads/
     if: github.event_name == 'push' || github.event_name != 'pull_request'
    
 
@@ -107,12 +108,12 @@ jobs:
 
     - name: Step 1 - Create a temporary artifact downloads folder
       run: mkdir downloads
-      
+
     - name: Upload TF Plan
       uses: actions/upload-artifact@v2
       with:
         name: tf_plan
-        path: downloads/tf_plan.txt
+        path: tf_plan.txt
         if-no-files-found: error
         retention-days: 1
 
@@ -149,7 +150,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: tf_plan.txt
-        path: downloads/tf_plan.txt
+        path: tf_plan.txt
       
 
     # Provision resources via Terraform        
