@@ -101,13 +101,11 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: |
-        terraform plan -out "tf_plan.txt" -input=false
+        terraform plan -out="tf_plan.txt" -input=false
         
       env: 
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
-    - name: Step 1 - Create a temporary artifact downloads folder
-      run: mkdir downloads
 
     - name: Upload TF Plan
       uses: actions/upload-artifact@v2
