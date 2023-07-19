@@ -62,7 +62,8 @@ jobs:
       contents: 'read'
       id-token: 'write'
     defaults:
-      working-directory: app
+      run:
+        working-directory: app
 
     runs-on: ubuntu-latest
     steps:
