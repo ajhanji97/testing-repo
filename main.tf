@@ -19,3 +19,6 @@ resource "google_storage_bucket" "raw" {
   location = var.region
   labels = local.labels
 }
+
+
+

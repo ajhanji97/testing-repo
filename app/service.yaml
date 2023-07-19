@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+ name: helloworld-cloudrunpipeline
+spec:
+ template:
+  spec:
+   containers:
+   - image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
