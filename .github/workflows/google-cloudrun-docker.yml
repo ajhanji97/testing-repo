@@ -55,13 +55,14 @@ env:
   REGION: "${{ vars.GCP_REGION }}" # TODO: update Cloud Run service region
 
 jobs:
-  defaults:
-      working-directory: app
+  
   deploy:
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
       contents: 'read'
       id-token: 'write'
+    defaults:
+      working-directory: app
 
     runs-on: ubuntu-latest
     steps:
