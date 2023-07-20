@@ -15,9 +15,9 @@ kind: Target
 metadata:
   name: 'Dev'
 description: 'Dev target'
-requireApproval:  
-  run:
-    location: 'projects/${PROJECT_ID_Target}/locations/${REGION}'
+
+run:
+  location: 'projects/${PROJECT_ID_Target}/locations/${REGION}'
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
