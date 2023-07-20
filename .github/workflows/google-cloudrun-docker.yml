@@ -120,7 +120,7 @@ jobs:
       #   run: |-
       #     export PROJECT_ID="${{ env.PROJECT_ID }}"
       #     export REGION="${{ env.REGION }}"
-      #     for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
+      #    for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
 
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
