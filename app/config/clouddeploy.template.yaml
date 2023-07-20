@@ -15,7 +15,6 @@ kind: Target
 metadata:
   name: 'dev'
 description: 'dev target'
-
 run:
   location: 'projects/${PROJECT_ID_Target}/locations/${REGION}'
 ---
