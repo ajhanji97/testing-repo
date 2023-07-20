@@ -124,7 +124,7 @@ jobs:
 
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
-          gcloud deploy apply --file config/clouddeploy.yaml --region ${{ env.GAR_LOCATION }}
+          gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }}
 
       - name: 'Create release name'
         run: |-
@@ -138,7 +138,7 @@ jobs:
           name: '${{ env.RELEASE_NAME }}'
           region: '${{ env.REGION }}'
           description: '${{ env.GITHUB_COMMIT_MSG }}'
-          skaffold_file: 'config/skaffold.yaml'
+          skaffold_file: 'config/skaffold.template.yaml'
           images: 'app=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}'
 
       - name: 'Report Cloud Deploy release'
