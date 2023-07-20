@@ -136,7 +136,7 @@ jobs:
         with:
           delivery_pipeline: '${{ env.SERVICE }}'
           name: '${{ env.RELEASE_NAME }}'
-          region: '${{ env.GCP_GAR_LOCATION }}'
+          region: 'us-central1'
           description: '${{ env.GITHUB_COMMIT_MSG }}'
           skaffold_file: 'config/skaffold.template.yaml'
           images: 'app=${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}'
