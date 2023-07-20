@@ -9,7 +9,7 @@ spec:
         autoscaling.knative.dev/maxScale: '1'
     spec:
       containers:
-      - name: 'app'
+      - name: 'helloworld-cloudrunpipeline'
         image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld-cloudrunpipeline
         env:
           - name: 'TARGET'
