@@ -1,7 +1,7 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: 'helloworld-cloudrunpipeline'
+  name: 'helloworld-cloudrunpipeline2'
 description: 'Deployment pipeline for demo app'
 serialPipeline:
   stages:
@@ -15,8 +15,9 @@ kind: Target
 metadata:
   name: 'Dev'
 description: 'Dev target'
-run:
-  location: 'projects/${PROJECT_ID}/locations/${REGION}'
+requireApproval:  
+  run:
+    location: 'projects/${PROJECT_ID_Target}/locations/${REGION}'
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target

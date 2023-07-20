@@ -56,7 +56,7 @@ env:
 
 jobs:
   #Deploy
-  deploy:
+  ci:
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
       contents: 'read'
@@ -116,15 +116,36 @@ jobs:
       # If required, use the Cloud Run url output in later steps
       # - name: Show Output
       #   run: echo ${{ steps.deploy.outputs.url }}
-      # - name: 'Render templatised config manifests'
-      #   run: |-
-      #     export PROJECT_ID="${{ env.PROJECT_ID }}"
-      #     export REGION="${{ env.REGION }}"
-      #    for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
+      - name: 'Render templatised config manifests'
+        run: |-
+          export PROJECT_ID_Target="${{ env.PROJECT_ID_Target }}"
+          export REGION_Target="${{ env.REGION }}"
 
-      # - name: 'Create Cloud Deploy delivery pipeline'
-      #   run: |-
-      #     gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }}
+      - name: 'Create Cloud Deploy delivery pipeline'
+        run: |-
+          gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }}
+# jobs:
+#   #Deploy
+#   cd:
+#     needs: ci
+#     # Add 'id-token' with the intended permissions for workload identity federation
+#     permissions:
+#       contents: 'read'
+#       id-token: 'write'
+#     defaults:
+#       run:
+#         working-directory: app
+
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Google Auth
+#         id: auth
+#         uses: 'google-github-actions/auth@v0'
+#         with:
+#           token_format: 'access_token'
+#           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
       - name: 'Create release name'
         run: |-
