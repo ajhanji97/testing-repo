@@ -122,9 +122,9 @@ jobs:
       #     export REGION="${{ env.REGION }}"
       #    for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
 
-      - name: 'Create Cloud Deploy delivery pipeline'
-        run: |-
-          gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }}
+      # - name: 'Create Cloud Deploy delivery pipeline'
+      #   run: |-
+      #     gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }}
 
       - name: 'Create release name'
         run: |-
