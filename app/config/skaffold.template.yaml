@@ -31,8 +31,8 @@ profiles:
   - name: 'Dev'
     manifests:
       rawYaml:
-        - 'app-dev.yaml'
+        - 'app-dev.template.yaml'
   - name: 'Staging'
     manifests:
       rawYaml:
-        - 'app-staging.yaml'
+        - 'app-staging.template.yaml'
