@@ -24,4 +24,4 @@ metadata:
   name: 'staging'
 description: 'staging target'
 run:
-  location: 'projects/core-stronghold-357120/locations/us-central1'
+  location: 'projects/amishajhanjiproject1/locations/us-central1'
