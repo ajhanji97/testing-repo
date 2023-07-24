@@ -5,10 +5,10 @@ metadata:
 description: 'Deployment pipeline for demo app'
 serialPipeline:
   stages:
-    - targetId: 'Dev'
-      profiles: ['Dev']
-    - targetId: 'Staging'
-      profiles: ['Staging']
+    - targetId: 'dev'
+      profiles: ['dev']
+    - targetId: 'staging'
+      profiles: ['staging']
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
