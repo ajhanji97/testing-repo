@@ -16,7 +16,7 @@ metadata:
   name: 'dev'
 description: 'dev target'
 run:
-  location: 'projects/amishajhanjiproject1/locations/us-central1'
+  location: 'projects/core-stronghold-357120/locations/us-central1'
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
@@ -24,4 +24,4 @@ metadata:
   name: 'staging'
 description: 'staging target'
 run:
-  location: 'projects/core-stronghold-357120/locations/us-central1'
+  location: 'projects/amishajhanjiproject1/locations/us-central1'
