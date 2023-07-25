@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: 'helloworld-cloudrunpipeline'
-        image: "us-central1-docker.pkg.dev/amishajhanjiproject1/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
+        image: ${CONTAINER_IMAGE}
         env:
           - name: 'TARGET'
             value: 'Staging'
