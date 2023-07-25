@@ -121,7 +121,7 @@ jobs:
           export PROJECT_ID_Target="${{ env.PROJECT_ID_Target }}"
           export REGION_Target="${{ env.REGION }}"
           export CONTAINER_IMAGE="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}"
-          envsubst < config/app-dev.template.yaml
+          for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
 
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
