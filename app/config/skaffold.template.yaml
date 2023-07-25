@@ -19,7 +19,7 @@
 #   - service.yaml
 # deploy:
 #   cloudrun:
-#     region: us-central1 hhhhhh
+#     region: us-central1 hhhh
 
 apiVersion: skaffold/v3alpha1
 kind: Config
@@ -27,11 +27,12 @@ metadata:
   name: 'app'
 deploy:
   cloudrun: {}
-build:
+tbuild:
   tagPolicy:
     sha256: {}
   artifacts:
-  - image: ${{ env.CONTAINER_IMAGE }}
+  - image: ${CONTAINER_IMAGE}
+ # - image: "us-central1-docker.pkg.dev/core-stronghold-357120/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
 profiles:
   - name: 'dev'
     manifests:

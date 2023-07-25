@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: 'helloworld-cloudrunpipeline'
-        image: ${{ env.CONTAINER_IMAGE }}
+        image: ${CONTAINER_IMAGE}
         env:
           - name: 'TARGET'
             value: 'Dev'
