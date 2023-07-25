@@ -19,7 +19,7 @@
 #   - service.yaml
 # deploy:
 #   cloudrun:
-#     region: us-central1 hhhh
+#     region: us-central1 hhhhhh
 
 apiVersion: skaffold/v3alpha1
 kind: Config
