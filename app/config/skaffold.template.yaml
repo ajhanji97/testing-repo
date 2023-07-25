@@ -27,6 +27,11 @@ metadata:
   name: 'app'
 deploy:
   cloudrun: {}
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
 profiles:
   - name: 'dev'
     manifests:
