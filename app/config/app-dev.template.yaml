@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: 'helloworld-cloudrunpipeline'
-        image: ${CONTAINER_IMAGE}
+        image: "us-central1-docker.pkg.dev/core-stronghold-357120/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
         env:
           - name: 'TARGET'
             value: 'Dev'
