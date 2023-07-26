@@ -2,9 +2,11 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: 'app-dev'
-# build:
-#   tagPolicy:
-#     sha256: {}
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - image: "us-central1-docker.pkg.dev/core-stronghold-357120/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
 spec:
   template:
     metadata:
