@@ -27,7 +27,7 @@ metadata:
   name: 'app'
 deploy:
   cloudrun: {}
-tbuild:
+build:
   tagPolicy:
     sha256: {}
   artifacts:
@@ -37,8 +37,8 @@ profiles:
   - name: 'dev'
     manifests:
       rawYaml:
-        - 'app-dev.template.yaml'
+        - 'app-dev.yaml'
   - name: 'staging'
     manifests:
       rawYaml:
-        - 'app-staging.template.yaml'
+        - 'app-staging.yaml'
