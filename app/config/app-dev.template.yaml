@@ -2,9 +2,9 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: 'app-dev'
-build:
-  tagPolicy:
-    sha256: {}
+# build:
+#   tagPolicy:
+#     sha256: {}
 spec:
   template:
     metadata:
