@@ -7,8 +7,8 @@ deploy:
 # build:
 #   tagPolicy:
 #     sha256: {}
-  artifacts:
-  - image: "us-central1-docker.pkg.dev/core-stronghold-357120/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
+  # artifacts:
+  # - image: "us-central1-docker.pkg.dev/core-stronghold-357120/helloworld-cloudrunpipeline/helloworld-cloudrunpipeline"
 profiles:
   - name: 'dev'
     manifests:
