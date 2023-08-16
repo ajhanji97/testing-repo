@@ -11,7 +11,3 @@ provider "google" {
 }
 #Test bucket creation
 #Test
-
-
-
-
