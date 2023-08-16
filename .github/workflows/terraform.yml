@@ -12,7 +12,7 @@ jobs:
   terraform_plan_dev:
     name: 'Terraform Plan Dev'
     runs-on: ubuntu-latest
-    #working-directory: downloads/lk
+    #working-directory: downloads/lkd
     if: github.event_name == 'push' || github.event_name != 'pull_request'
    
 
