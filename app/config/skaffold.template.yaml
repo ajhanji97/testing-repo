@@ -1,11 +1,11 @@
-apiVersion: skaffold/v4beta5
+apiVersion: skaffold/v3alpha1
 kind: Config
-customActions:
-    - name: postdeploy-action
-      containers:
-      - name: postdeploy-echo
-        image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
-        command: ["npm run"]
+# customActions:
+#     - name: postdeploy-action
+#       containers:
+#       - name: postdeploy-echo
+#         image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
+#         command: ["npm run"]
         
 metadata:
   name: 'app'
@@ -30,13 +30,13 @@ profiles:
     manifests:
       rawYaml:
         - 'app-staging.yaml'
-    verify:
-      - name: verify-dev
-        container:
-          name: verify_test
-          image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
-          command: 
-            [
-              "echo 'hello world'"
-            ]
+    # verify:
+    #   - name: verify-dev
+    #     container:
+    #       name: verify_test
+    #       image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
+    #       command: 
+    #         [
+    #           "echo 'hello world'"
+    #         ]
   
