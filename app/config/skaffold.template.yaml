@@ -18,13 +18,7 @@ profiles:
             [
               "echo 'hello world'"
             ]
-    customActions:
-      - name: postdeploy-action
-        containers:
-        - name: postdeploy-echo
-          image: ubuntu
-          command: ["/bin/sh"]
-          args: ["-c", 'echo "this is a predeploy action"' ]
+  
   - name: 'staging'
     manifests:
       rawYaml:
@@ -38,11 +32,11 @@ profiles:
             [
               "echo 'hello world'"
             ]
-    customActions:
-      - name: postdeploy-action
-        containers:
-        - name: postdeploy-echo
-          image: ubuntu
-          command: ["/bin/sh"]
-          args: ["-c", 'echo "this is a predeploy action"' ]
-    
+  
+customActions:
+    - name: postdeploy-action
+      containers:
+      - name: postdeploy-echo
+        image: ubuntu
+        command: ["/bin/sh"]
+        args: ["-c", 'echo "this is a predeploy action"' ]
