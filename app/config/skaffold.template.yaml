@@ -1,11 +1,11 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v4beta5
 kind: Config
-# customActions:
-#     - name: postdeploy-action
-#       containers:
-#       - name: postdeploy-echo
-#         image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
-#         command: ["npm run"]
+customActions:
+    - name: postdeploy-action
+      containers:
+      - name: postdeploy-echo
+        image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
+        command: ["npm run"]
         
 metadata:
   name: 'app'
