@@ -22,3 +22,13 @@ profiles:
     manifests:
       rawYaml:
         - 'app-staging.yaml'
+    verify:
+      - name: verify-dev
+        container:
+          name: verify_test
+          image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
+          command: 
+            [
+              "echo 'hello world'"
+            ]
+    
