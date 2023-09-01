@@ -9,9 +9,9 @@ serialPipeline:
       profiles: ['dev']
       strategy:
         standard:
-          verify: true
-          postdeploy:
-            actions: ["postdeploy-action"] 
+          #verify: true
+          # postdeploy:
+          #   actions: ["postdeploy-action"] 
     - targetId: 'staging'
       profiles: ['staging']
       # strategy:
