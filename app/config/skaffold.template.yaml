@@ -1,5 +1,12 @@
 apiVersion: skaffold/v3alpha1
 kind: Config
+customActions:
+    - name: postdeploy-action
+      containers:
+      - name: postdeploy-echo
+        image: ubuntu
+        command: ["/bin/sh"]
+        args: ["-c", 'echo "this is a predeploy action"' ]
 metadata:
   name: 'app'
 deploy:
@@ -33,10 +40,3 @@ profiles:
               "echo 'hello world'"
             ]
   
-customActions:
-    - name: postdeploy-action
-      containers:
-      - name: postdeploy-echo
-        image: ubuntu
-        command: ["/bin/sh"]
-        args: ["-c", 'echo "this is a predeploy action"' ]
