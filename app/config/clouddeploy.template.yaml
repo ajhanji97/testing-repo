@@ -12,6 +12,9 @@ serialPipeline:
           verify: true
     - targetId: 'staging'
       profiles: ['staging']
+      strategy:
+        standard:
+          verify: true
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
@@ -27,7 +30,6 @@ executionConfigs:
   - DEPLOY 
   - VERIFY 
   - POSTDEPLOY
-  serviceAccount: e2e-testing-svc@wendys-ttm.iam.gserviceaccount.com
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
@@ -36,3 +38,10 @@ metadata:
 description: 'staging target'
 run:
   location: 'projects/amishajhanjiproject1/locations/us-central1'
+executionConfigs:
+- usages:
+  - RENDER
+  - PREDEPLOY
+  - DEPLOY 
+  - VERIFY 
+  - POSTDEPLOY
