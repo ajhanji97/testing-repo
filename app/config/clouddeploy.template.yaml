@@ -7,6 +7,9 @@ serialPipeline:
   stages:
     - targetId: 'dev'
       profiles: ['dev']
+      strategy:
+        standard:
+          verify: true
     - targetId: 'staging'
       profiles: ['staging']
 ---
