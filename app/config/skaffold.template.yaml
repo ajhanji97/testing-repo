@@ -5,8 +5,8 @@ customActions:
       containers:
       - name: postdeploy-echo
         image: us-central1-docker.pkg.dev/core-stronghold-357120/core-stronghold-357120-app-image-repo/helloworld
-        command: ["/bin/sh"]
-        args: ["-c", 'echo "this is a predeploy action"' ]
+        command: ["npm run"]
+        
 metadata:
   name: 'app'
 deploy:
