@@ -10,15 +10,15 @@ serialPipeline:
       strategy:
         standard:
           verify: true
-          postdeploy:
-            actions: ["postdeploy-action"] 
+          # postdeploy:
+          #   actions: ["postdeploy-action"] 
     - targetId: 'staging'
       profiles: ['staging']
       strategy:
         standard:
           verify: true
-          postdeploy:
-            actions: [postdeploy-action"] 
+          # postdeploy:
+          #   actions: [postdeploy-action"] 
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
