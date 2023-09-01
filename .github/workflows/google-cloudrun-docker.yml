@@ -103,7 +103,7 @@ jobs:
 
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
-          gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }} --project amishajhanjiproject1
+          gcloud deploy apply --file config/clouddeploy.template.yaml --region ${{ env.GAR_LOCATION }} 
 
       - name: 'Create release name'
         run: |-
