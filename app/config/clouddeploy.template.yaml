@@ -29,11 +29,7 @@ run:
   location: 'projects/core-stronghold-357120/locations/us-central1'
 executionConfigs:
 - usages:
-  - RENDER
-  - PREDEPLOY
   - DEPLOY 
-  - VERIFY 
-  - POSTDEPLOY
   serviceAccount : my-account@core-stronghold-357120.iam.gserviceaccount.com
 ---
 apiVersion: deploy.cloud.google.com/v1
