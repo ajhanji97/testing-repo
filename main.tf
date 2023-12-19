@@ -25,7 +25,7 @@ resource "google_storage_bucket_object" "object" {
   bucket = google_storage_bucket.bucket.name
   source = "send_to_bq.zip"  # Add path to the zipped function source code
 }
-resource "google_cloudfunctions_function" "function" {
+resource "google_cloudfunctions2_function" "function" {
   name        = "send_to_bq"
   description = "function to send data to interject status table"
 
