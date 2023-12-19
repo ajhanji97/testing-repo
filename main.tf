@@ -52,7 +52,7 @@ resource "google_cloudfunctions2_function" "function" {
       runtime = "python311"
       entry_point = "send_to_bq"  # Set the entry point 
       environment_variables = {
-      GCP_PROJECT = var.project_id
+      GCP_PROJECT = var.project
     }
       source {
         storage_source {
