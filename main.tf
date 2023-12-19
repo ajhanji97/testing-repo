@@ -14,12 +14,17 @@ provider "google" {
 resource "google_pubsub_topic" "topic" {
   name = "functions2-topic"
 }
-resource "google_storage_bucket_object" "archive" {
-  name   = "send_to_bq"
-  bucket = google_storage_bucket.bucket.name
-  source = "send_to_bq.zip"
+resource "google_storage_bucket" "bucket" {
+  name     = "${var.project}-gcf-source"  # Every bucket name must be globally unique
+  location = "US"
+  uniform_bucket_level_access = true
 }
 
+resource "google_storage_bucket_object" "object" {
+  name   = "send_to_bq.zip"
+  bucket = google_storage_bucket.bucket.name
+  source = "send_to_bq.zip"  # Add path to the zipped function source code
+}
 resource "google_cloudfunctions_function" "function" {
   name        = "send_to_bq"
   description = "function to send data to interject status table"
