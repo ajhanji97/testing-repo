@@ -15,7 +15,7 @@ resource "google_pubsub_topic" "topic" {
   name = "functions2-topic"
 }
 resource "google_storage_bucket" "bucket" {
-  name     = "${var.project}-gcf-source"  # Every bucket name must be globally unique
+  name     = "core-stronghold-357120-gcf-source"  # Every bucket name must be globally unique
   location = "US"
   uniform_bucket_level_access = true
 }
