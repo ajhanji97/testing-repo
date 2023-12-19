@@ -28,7 +28,7 @@ resource "google_storage_bucket_object" "object" {
 resource "google_cloudfunctions2_function" "function" {
   name        = "send_to_bq"
   description = "function to send data to interject status table"
-
+  location = "us-central1"
   event_trigger {
     trigger_region = "us-central1"
     event_type = "google.cloud.pubsub.topic.v1.messagePublished"
