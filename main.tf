@@ -6,8 +6,8 @@ terraform {
 }
 
 provider "google" {
-  project = var.project
-  region = var.region
+  project = "core-stronghold-357120"
+  region = "us-central1"
 }
 #Test bucket creation
 #Test
