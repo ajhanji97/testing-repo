@@ -23,6 +23,6 @@ jobs:
       with:
         name: 'send-to-bq'
         runtime: 'python311'
-        source_dir: ../send-to-bq/
+        source_dir: .././send-to-bq/
 
  
