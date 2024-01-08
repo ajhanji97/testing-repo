@@ -10,7 +10,8 @@ jobs:
       id-token: 'write'
 
     steps:
-    - uses: 'actions/checkout@v4'
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Google Auth
       id: auth
@@ -19,21 +20,17 @@ jobs:
         token_format: 'access_token'
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+
     # - id: 'deploy'
     #   uses: 'google-github-actions/deploy-cloud-functions@v2'
     #   with:
     #     name: 'send-to-bq'
     #     runtime: 'python311'
     #     source_dir: .././send-to-bq/
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - send_to_bq
-      - --region=us-central-1
-      - --source=.././send-to-bq/
-      - --runtime=python311
+    - name: 'Deploy cloud function'
+      run: "gcloud functions deploy send_to_bq --region=us-central-1 --source=.././send-to-bq/ --runtime=python311 --entry-point=helloworld"
   staging:
     name: "Staging environment"
     runs-on: 'ubuntu-latest'
@@ -42,7 +39,8 @@ jobs:
       id-token: 'write'
 
     steps:
-    - uses: 'actions/checkout@v4'
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Google Auth
       id: auth
@@ -51,9 +49,14 @@ jobs:
         token_format: 'access_token'
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloud-functions@v2'
-      with:
-        name: 'send-to-bq'
-        runtime: 'python311'
-        source_dir: .././send-to-bq/
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
+
+    # - id: 'deploy'
+    #   uses: 'google-github-actions/deploy-cloud-functions@v2'
+    #   with:
+    #     name: 'send-to-bq'
+    #     runtime: 'python311'
+    #     source_dir: .././send-to-bq/
+    - name: 'Deploy cloud function'
+      run: "gcloud functions deploy send_to_bq --region=us-central-1 --source=.././send-to-bq/ --runtime=python311 --entry-point=helloworld"
