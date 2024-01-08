@@ -2,7 +2,40 @@ on:
   push:
     branches: [ "main" ]
 jobs:
-  job_id:
+  dev:
+    name: "dev environment"
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: 'actions/checkout@v4'
+
+    - name: Google Auth
+      id: auth
+      uses: 'google-github-actions/auth@v0'
+      with:
+        token_format: 'access_token'
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+    # - id: 'deploy'
+    #   uses: 'google-github-actions/deploy-cloud-functions@v2'
+    #   with:
+    #     name: 'send-to-bq'
+    #     runtime: 'python311'
+    #     source_dir: .././send-to-bq/
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args:
+      - gcloud
+      - functions
+      - deploy
+      - send_to_bq
+      - --region=us-central-1
+      - --source=.././send-to-bq/
+      - --runtime=python311
+  staging:
+    name: "Staging environment"
     runs-on: 'ubuntu-latest'
     permissions:
       contents: 'read'
@@ -24,5 +57,3 @@ jobs:
         name: 'send-to-bq'
         runtime: 'python311'
         source_dir: .././send-to-bq/
-
- 
