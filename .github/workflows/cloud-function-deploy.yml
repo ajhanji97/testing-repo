@@ -30,7 +30,7 @@ jobs:
     #     runtime: 'python311'
     #     source_dir: .././send-to-bq/
     - name: 'Deploy cloud function'
-      run: "gcloud functions deploy send_to_bq --region=us-central1 --source=.././send-to-bq/ --runtime=python311 --entry-point=helloworld"
+      run: "gcloud functions deploy send_to_bq --region=us-central1 --source=../send-to-bq/ --runtime=python311 --entry-point=helloworld"
   staging:
     name: "Staging environment"
     runs-on: 'ubuntu-latest'
@@ -59,4 +59,4 @@ jobs:
     #     runtime: 'python311'
     #     source_dir: .././send-to-bq/
     - name: 'Deploy cloud function'
-      run: "gcloud functions deploy send_to_bq --region=us-central1 --source=.././send-to-bq/ --runtime=python311 --entry-point=helloworld"
+      run: "gcloud functions deploy send_to_bq --region=us-central1 --source=../send-to-bq/ --runtime=python311 --entry-point=helloworld"
